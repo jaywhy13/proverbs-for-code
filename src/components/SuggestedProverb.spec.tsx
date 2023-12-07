@@ -1,5 +1,5 @@
 import React from "react";
-import { render, getByText, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { screen } from "@testing-library/dom";
 import { SuggestedProverb, SuggestedProverbProps } from "./SuggestedProverb";
 import { v4 } from "uuid";
