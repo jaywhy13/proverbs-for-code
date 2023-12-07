@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Suggestion } from "../constants";
-import suggestionService from "../services/suggestions";
+import suggestionService from "../services/llm_suggestion";
 
 // interface IGetProverbsResponse that returns a list of strings
 export interface IGetProverbsResponse {
@@ -33,7 +33,6 @@ export const useGetSuggestedProverbs = (): IGetProverbsResponse => {
         excludeSuggestions: excludeSuggestions,
       });
       setLoading(false);
-      xy();
       setSuggestions(remoteSuggestions);
     } catch (e) {
       setError("Error loading suggestions: " + e);
