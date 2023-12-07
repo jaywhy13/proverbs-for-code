@@ -9,7 +9,13 @@ for ChatGPT so I can get a proverb back, so I've opted to build a
 little React app instead that takes the lesson and gets a list of
 proverbs from ChatGPT.
 
+## Launching the app
 
+From a terminal run the following:
+
+```
+yarn run start
+```
 
 ## Todos
 - [x] Load a specific number of suggestions
