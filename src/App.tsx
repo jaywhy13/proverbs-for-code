@@ -3,6 +3,7 @@ import "./App.css";
 import { Suggestion } from "./constants";
 import { useGetSuggestedProverbs } from "./hooks/useGetProverbs";
 import { SuggestedProverb } from "./components/SuggestedProverb";
+import Lesson from "./components/Lesson";
 
 function App() {
   const [lesson, setLesson] = useState<string>("");
@@ -11,6 +12,7 @@ function App() {
 
   const [numberOfSuggestions, setNumberOfSuggestions] = useState<number>(5);
   const NUMBER_OF_SUGGESTIONS_OPTIONS = [1, 3, 5, 10];
+
   // Get the suggestions from the useGetProverbs hook
   const {
     loading,
@@ -39,12 +41,6 @@ function App() {
     await loadSuggestions(lesson, numberOfSuggestions, allSuggestions);
   };
 
-  const handleLessonChanged = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setLesson(event.target.value);
-  };
-
   const handleNumberOfSuggestionsUpdated = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
@@ -69,13 +65,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Enter the code you want to get proverbs for.</p>
-        <textarea
-          rows={5}
-          cols={60}
-          value={lesson}
-          onChange={handleLessonChanged}
-        />
+        <Lesson lesson={lesson} handleLessonChanged={setLesson} />
         <label htmlFor="numberOfProverbs">Number of Proverbs</label>
         <select
           id="numberOfProverbs"
