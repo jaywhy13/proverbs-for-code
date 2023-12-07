@@ -8,7 +8,7 @@ import { Schema } from "zod";
 
 const llmModel = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
-  openAIApiKey: "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",
+  openAIApiKey: "<<api_key>>",
 });
 
 export class LLMClient {
