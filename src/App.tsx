@@ -4,6 +4,7 @@ import { Suggestion } from "./constants";
 import { useGetSuggestedProverbs } from "./hooks/useGetProverbs";
 import { SuggestedProverb } from "./components/SuggestedProverb";
 import Lesson from "./components/Lesson";
+import NumberOfProverbs from "./components/NumberOfProverbs";
 
 function App() {
   const [lesson, setLesson] = useState<string>("");
@@ -11,7 +12,6 @@ function App() {
   const [allSuggestions, setAllSuggestions] = useState<Suggestion[]>([]);
 
   const [numberOfSuggestions, setNumberOfSuggestions] = useState<number>(5);
-  const NUMBER_OF_SUGGESTIONS_OPTIONS = [1, 3, 5, 10];
 
   // Get the suggestions from the useGetProverbs hook
   const {
@@ -41,12 +41,6 @@ function App() {
     await loadSuggestions(lesson, numberOfSuggestions, allSuggestions);
   };
 
-  const handleNumberOfSuggestionsUpdated = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setNumberOfSuggestions(Number.parseInt(event.target.value));
-  };
-
   const handleLoadMore = async () => {
     await loadSuggestions(lesson, numberOfSuggestions, allSuggestions);
   };
@@ -66,21 +60,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Lesson lesson={lesson} handleLessonChanged={setLesson} />
-        <label htmlFor="numberOfProverbs">Number of Proverbs</label>
-        <select
-          id="numberOfProverbs"
-          onChange={handleNumberOfSuggestionsUpdated}
-        >
-          {NUMBER_OF_SUGGESTIONS_OPTIONS.map((number) => (
-            <option
-              value={number}
-              key={number}
-              selected={number === numberOfSuggestions}
-            >
-              {number}
-            </option>
-          ))}
-        </select>
+
+        <NumberOfProverbs
+          numberOfSuggestions={numberOfSuggestions}
+          handleNumberOfSuggestionsUpdated={setNumberOfSuggestions}
+        />
 
         <button onClick={handleClick} disabled={loading}>
           {loading && "Loading"}
