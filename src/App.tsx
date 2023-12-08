@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Suggestion } from "./constants";
 import { useGetSuggestedProverbs } from "./hooks/useGetProverbs";
-import { SuggestedProverb } from "./components/SuggestedProverb";
 import Lesson from "./components/Lesson";
 import NumberOfProverbs from "./components/NumberOfProverbs";
+import SuggestedProverbs from "./components/SuggestedProverbs";
 
 function App() {
   const [lesson, setLesson] = useState<string>("");
@@ -45,13 +45,19 @@ function App() {
     await loadSuggestions(lesson, numberOfSuggestions, allSuggestions);
   };
 
-  const removeProverb = (id: string) => {
+  /**
+   * Removes the suggestion from the list that we have
+   */
+  const removeSuggestion = (id: string) => {
     const suggestionsExceptSpecifiedOne = suggestions.filter(
       (suggestion) => suggestion.id !== id,
     );
     setSuggestions(suggestionsExceptSpecifiedOne);
   };
 
+  /**
+   * Clears all the proverbs visible on the page
+   */
   const handleClearProverbs = () => {
     setSuggestions([]);
   };
@@ -76,18 +82,12 @@ function App() {
         <p style={{ color: "red" }}>{error}</p>
 
         <h1>Results</h1>
-        <div>
-          {suggestions.map((suggestion) => (
-            <SuggestedProverb
-              key={suggestion.id}
-              id={suggestion.id}
-              proverb={suggestion.proverb.text}
-              meaning={suggestion.proverb.meaning}
-              relation={suggestion.relation}
-              onRemove={() => removeProverb(suggestion.id)}
-            />
-          ))}
-        </div>
+
+        <SuggestedProverbs
+          suggestions={suggestions}
+          removeSuggestion={removeSuggestion}
+        />
+
         <div>
           <button onClick={handleLoadMore} disabled={loading}>
             Load More
