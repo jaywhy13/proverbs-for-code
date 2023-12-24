@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { suggestionClient } from "../clients/SuggestionClient";
 import { Suggestion } from "../constants";
-import suggestionService from "../services/llm_suggestion";
 
 // interface IGetProverbsResponse that returns a list of strings
 export interface IGetProverbsResponse {
@@ -27,7 +27,7 @@ export const useGetSuggestedProverbs = (): IGetProverbsResponse => {
     setLoading(true);
     setError(undefined);
     try {
-      const remoteSuggestions = await suggestionService.getSuggestions({
+      const remoteSuggestions = await suggestionClient.getSuggestions({
         lesson,
         numberOfProverbs: numberOfSuggestions,
         excludeSuggestions: excludeSuggestions,
