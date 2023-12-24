@@ -20,7 +20,7 @@ class SuggestionClient {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ lesson }),
+        body: JSON.stringify({ lesson, numberOfProverbs }),
       });
       if (!response.ok) {
         throw new Error("Failed to fetch suggestions");
