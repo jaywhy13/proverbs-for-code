@@ -19,7 +19,6 @@ yarn run start
 
 ## Todos
 - [x] Load a specific number of suggestions
-- [ ] Don't repeat proverbs
 - [x] Load more suggestions 
 - [ ] Disregard a suggestion and get another in it's place
 - [ ] Clear all suggestions
