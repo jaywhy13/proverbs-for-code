@@ -2,7 +2,7 @@ import { Suggestion } from "../constants";
 import { RemoteSuggestion } from "./constants";
 
 class SuggestionClient {
-  BASE_URL = "http://localhost:3001";
+  BASE_URL = "http://proverbs-api.hub.me:3001";
   SUGGESTION_URL = "/suggestions";
 
   public async getSuggestions({
