@@ -24,7 +24,11 @@ yarn run start
 - [ ] Disregard a suggestion and get another in it's place
 - [ ] Clear all suggestions
 
+## Updating the image
 
+Once changes have been merged into main, there's a Github action
+that deploys the image to Docker Hub. The image is tagged with the
+latest commit hash and the latest tag.
 
 ## Use Cases
 
